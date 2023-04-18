@@ -30,7 +30,7 @@ done
 
 
 
-find $(pwd) -maxdepth 1 -type f -path '*.gz' > reads.txt
+find $(pwd) -maxdepth 1 -type f -path '*.gz' | xargs -n 2 > reads.txt
 gzip mmusculus.Dfam.fa
 
 ## sequence of mouse transcripts
