@@ -44,7 +44,7 @@ ncrna=gencode.vM32.lncRNA_transcripts.fa.gz
 #### TEspeX for 150 nts PE reads in reverse orientation
 
 apptainer exec $CONTAINER/tespex.sif sh -c \
-	"source activate TEspeX_deps
+	"conda activate TEspeX_deps
 	 cd /home/TEspeX
 	 tespex=$PWD
 
