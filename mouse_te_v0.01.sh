@@ -11,8 +11,9 @@ cd $PBS_O_WORKDIR
 
 #### Variables
 CONTAINER=/projects/ncrrbt_share_la/dev_pipe3
+#for PE reads, STAR's read length is the sum of the mates length, so it's 300 for 2x150 reads.
 CPUS=18
-LENGTH=150
+LENGTH=300
 ORIENTATION=reverse
 
 
