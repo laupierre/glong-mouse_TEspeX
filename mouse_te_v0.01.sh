@@ -44,8 +44,7 @@ ncrna=gencode.vM32.lncRNA_transcripts.fa.gz
 #### TEspeX for 150 nts PE reads in reverse orientation
 
 apptainer exec $CONTAINER/tespex.sif sh -c \
-	"conda activate TEspeX_deps
-	 cd /home/TEspeX
+	"cd /home/TEspeX
 	 tespex=$PWD
 
 	 python3 TEspeX.py --num_threads $CPUS --TE $PBS_O_WORKDIR/mmusculus.Dfam.fa.gz \
