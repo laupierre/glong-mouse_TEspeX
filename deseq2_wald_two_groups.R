@@ -86,6 +86,44 @@ write.xlsx (res, "GLONG_15months_vs_WT_with_transposons_2023.xlsx", rowNames=F)
 
 
 
+## GL3 vs WT
+
+res <- results(dds, contrast=c("condition", "GL3", "WT"))
+
+res <- merge (data.frame (res), counts (dds), by="row.names")
+res <- merge (res, annot, by.x="Row.names", by.y="Geneid", all.x=TRUE)
+
+res$gene_name [is.na (res$gene_name)] <- res$Row.names [is.na (res$gene_name)]
+res$external_gene_name [is.na (res$external_gene_name)] <- res$Row.names [is.na (res$external_gene_name)]
+res$gene_type[is.na (res$gene_type)] <- paste ("transposon", gsub (".*#", "", res$Row.names [is.na (res$gene_type)]), sep=":")
+
+res <- res[order (res$padj), ]
+colnames (res)[1] <- "Geneid"
+
+# Sanity check
+res[res$gene_name == "Snca", ] 
+write.xlsx (res, "GLONG_3months_vs_WT_with_transposons_2023.xlsx", rowNames=F)
+
+
+
+## GL15 vs GL3
+
+res <- results(dds, contrast=c("condition", "GL15", "GL3"))
+
+res <- merge (data.frame (res), counts (dds), by="row.names")
+res <- merge (res, annot, by.x="Row.names", by.y="Geneid", all.x=TRUE)
+
+res$gene_name [is.na (res$gene_name)] <- res$Row.names [is.na (res$gene_name)]
+res$external_gene_name [is.na (res$external_gene_name)] <- res$Row.names [is.na (res$external_gene_name)]
+res$gene_type[is.na (res$gene_type)] <- paste ("transposon", gsub (".*#", "", res$Row.names [is.na (res$gene_type)]), sep=":")
+
+res <- res[order (res$padj), ]
+colnames (res)[1] <- "Geneid"
+
+# Sanity check
+res[res$gene_name == "Snca", ] 
+write.xlsx (res, "GLONG_15months_vs_GLONG_3months_with_transposons_2023.xlsx", rowNames=F)
+
 
 
 
