@@ -93,3 +93,6 @@ write.xlsx (res, "GLONG_15months_vs_WT_with_transposons_2023.xlsx", rowNames=F)
 
 
 
+
+
+
