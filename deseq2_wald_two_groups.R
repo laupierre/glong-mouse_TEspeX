@@ -58,7 +58,6 @@ counts <- rbind (counts, tesp)
 
 
 ## DESeq2 
-
 dds <- DESeqDataSetFromMatrix(countData = round (counts), colData = sampleTable, design = ~ condition)
 
 keep <- rowSums(counts(dds) >= 10) >= 5
@@ -71,6 +70,7 @@ dds <- DESeq(dds)
 res <- results(dds, contrast=c("condition", "GL15", "WT"))
 
 res <- merge (data.frame (res), counts (dds), by="row.names")
+#res <- merge (data.frame (res), round (counts (dds, normalized=TRUE)), by="row.names")
 res <- merge (res, annot, by.x="Row.names", by.y="Geneid", all.x=TRUE)
 
 res$gene_name [is.na (res$gene_name)] <- res$Row.names [is.na (res$gene_name)]
@@ -91,6 +91,7 @@ write.xlsx (res, "GLONG_15months_vs_WT_with_transposons_2023.xlsx", rowNames=F)
 res <- results(dds, contrast=c("condition", "GL3", "WT"))
 
 res <- merge (data.frame (res), counts (dds), by="row.names")
+#res <- merge (data.frame (res), round (counts (dds, normalized=TRUE)), by="row.names")
 res <- merge (res, annot, by.x="Row.names", by.y="Geneid", all.x=TRUE)
 
 res$gene_name [is.na (res$gene_name)] <- res$Row.names [is.na (res$gene_name)]
@@ -111,6 +112,7 @@ write.xlsx (res, "GLONG_3months_vs_WT_with_transposons_2023.xlsx", rowNames=F)
 res <- results(dds, contrast=c("condition", "GL15", "GL3"))
 
 res <- merge (data.frame (res), counts (dds), by="row.names")
+#res <- merge (data.frame (res), round (counts (dds, normalized=TRUE)), by="row.names")
 res <- merge (res, annot, by.x="Row.names", by.y="Geneid", all.x=TRUE)
 
 res$gene_name [is.na (res$gene_name)] <- res$Row.names [is.na (res$gene_name)]
