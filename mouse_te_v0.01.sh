@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -l walltime=40:00:00
+#PBS -l walltime=100:00:00
 #PBS -l select=1:ncpus=18
 #PBS -q workq
 #PBS -N tespex
